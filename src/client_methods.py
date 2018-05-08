@@ -4690,12 +4690,12 @@ class Mixin:
       This API is for use by Avalara Registrar administrative users only.
       Mark the user object identified by this URL as deleted.
     
-      :param id_ [int] The ID of the user you wish to delete.
       :param accountId [int] The accountID of the user you wish to delete.
+      :param id_ [int] The ID of the user you wish to delete.
       :return ErrorDetail
     """
-    def delete_user(self, id_, accountId):
-        return requests.delete('{}/api/v2/accounts/{}/users/{}'.format(self.base_url, id_, accountId),
+    def delete_user(self, accountId, id_):
+        return requests.delete('{}/api/v2/accounts/{}/users/{}'.format(self.base_url, accountId, id_),
                                auth=self.auth, headers=self.client_header, params=None)
 
     r"""
@@ -5952,13 +5952,13 @@ class Mixin:
     Get the user object identified by this URL.
       A user represents one person with access privileges to make API calls and work with a specific account.
     
-      :param id_ [int] The ID of the user to retrieve.
       :param accountId [int] The accountID of the user you wish to get.
+      :param id_ [int] The ID of the user to retrieve.
       :param include [string] Optional fetch commands.
       :return UserModel
     """
-    def get_user(self, id_, accountId, include=None):
-        return requests.get('{}/api/v2/accounts/{}/users/{}'.format(self.base_url, id_, accountId),
+    def get_user(self, accountId, id_, include=None):
+        return requests.get('{}/api/v2/accounts/{}/users/{}'.format(self.base_url, accountId, id_),
                                auth=self.auth, headers=self.client_header, params=include)
 
     r"""
@@ -5978,12 +5978,12 @@ class Mixin:
       * If the 'permissions' array within entitlements does not contain 'AccountSvc.CompanySave', the call will fail.
       For a full list of defined permissions, please use '/api/v2/definitions/permissions' .
     
-      :param id_ [int] The ID of the user to retrieve.
       :param accountId [int] The accountID of the user you wish to get.
+      :param id_ [int] The ID of the user to retrieve.
       :return UserEntitlementModel
     """
-    def get_user_entitlements(self, id_, accountId):
-        return requests.get('{}/api/v2/accounts/{}/users/{}/entitlements'.format(self.base_url, id_, accountId),
+    def get_user_entitlements(self, accountId, id_):
+        return requests.get('{}/api/v2/accounts/{}/users/{}/entitlements'.format(self.base_url, accountId, id_),
                                auth=self.auth, headers=self.client_header, params=None)
 
     r"""
@@ -6052,13 +6052,13 @@ class Mixin:
       All data from the existing object will be replaced with data in the object you PUT.
       To set a field's value to null, you may either set its value to null or omit that field from the object you post.
     
-      :param id_ [int] The ID of the user you wish to update.
       :param accountId [int] The accountID of the user you wish to update.
+      :param id_ [int] The ID of the user you wish to update.
       :param model [UserModel] The user object you wish to update.
       :return UserModel
     """
-    def update_user(self, id_, accountId, model):
-        return requests.put('{}/api/v2/accounts/{}/users/{}'.format(self.base_url, id_, accountId),
+    def update_user(self, accountId, id_, model):
+        return requests.put('{}/api/v2/accounts/{}/users/{}'.format(self.base_url, accountId, id_),
                                auth=self.auth, headers=self.client_header, json=model)
 
     r"""
