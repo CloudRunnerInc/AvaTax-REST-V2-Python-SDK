@@ -6040,9 +6040,11 @@ class Mixin:
       :param orderBy [string] A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.
       :return FetchResult
     """
-    def query_users(self, include=None):
+    def query_users(self, include=None, filter=None):
+        payload = {k: v for k, v in (('$include', include),
+                                     ('$filter', filter)) if v is not None}
         return requests.get('{}/api/v2/users'.format(self.base_url),
-                               auth=self.auth, headers=self.client_header, params=include)
+                               auth=self.auth, headers=self.client_header, params=payload)
 
     r"""
     Update a single user
